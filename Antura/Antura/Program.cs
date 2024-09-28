@@ -12,7 +12,7 @@ if (args.Length > 0)
         var nrOfFileNamesInText = wordCounter.CountFileNamesInText(filePath);
         Console.WriteLine("found " + nrOfFileNamesInText);
     }
-	catch (Exception ex)
+	catch (Exception)
 	{
         Console.WriteLine("Exception was thrown");
     }

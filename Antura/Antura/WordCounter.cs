@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Antura
@@ -14,14 +15,13 @@ namespace Antura
             try
             {
                 var file = File.Open(filePath, FileMode.Open);
-                string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(filePath);
+                string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(filePath).ToLower();
                 using StreamReader reader = new StreamReader(file);
                 string line;
                 
-                while ((line = reader.ReadLine()) != null)
+                while ((line = reader.ReadLine()?.ToLower()) != null)
                 {
-                    if (line.Contains(fileNameWithoutExtension, StringComparison.OrdinalIgnoreCase))
-                        counter++;
+                    counter += Regex.Matches(line, fileNameWithoutExtension).Count;
                 }                
             }
             catch (FileNotFoundException ex)

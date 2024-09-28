@@ -9,7 +9,7 @@ namespace Antura
     public interface IWordCounter
     {
         /// <summary>
-        /// Counts the occurrences of the file name (without extension) in the specified text file.
+        /// Counts the occurrences of the file name (without extension) in the specified text file. (case insensitive)
         /// </summary>
         /// <param name="filePath">The path to the text file.</param>
         /// <returns>The count of occurrences of the file name in the text.</returns>
