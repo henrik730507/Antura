@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Antura": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\temp\\hello.txt"
+    }
+  }
+}
