@@ -15,8 +15,8 @@ namespace Antura
             try
             {
                 var file = File.Open(filePath, FileMode.Open);
-                string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(filePath).ToLower();
-                using StreamReader reader = new StreamReader(file);
+                var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(filePath).ToLower();
+                using var reader = new StreamReader(file);
                 string line;
                 
                 while ((line = reader.ReadLine()?.ToLower()) != null)
