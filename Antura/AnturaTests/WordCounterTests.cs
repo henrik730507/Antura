@@ -57,6 +57,16 @@ public class WordCounterTests
     }
 
     [TestMethod]
+    public void CountFileNamesInText_FileTypeNotValid_ThrowsArgumentException()
+    {
+        // Arrange
+        var filePath = "nonexistent.rtf";
+
+        // Act & Assert
+        Assert.ThrowsException<ArgumentException>(() => _wordCounter.CountFileNamesInText(filePath));
+    }
+
+    [TestMethod]
     public void CountFileNamesInText_CaseInsensitiveCount_ReturnsCorrectCount()
     {
         // Arrange

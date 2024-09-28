@@ -4,13 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Antura
 {
     public class WordCounter : IWordCounter
     {
+        private readonly string[] validFileTypes = [".txt"]; 
         public int CountFileNamesInText(string filePath)
         {
+            if (!validFileTypes.Contains(Path.GetExtension(filePath)))
+            {
+                throw new ArgumentException($"Valid file types are: {string.Join(string.Empty, validFileTypes)}");
+            }
+
             var counter = 0;
             try
             {
@@ -24,14 +31,19 @@ namespace Antura
                     counter += Regex.Matches(line, fileNameWithoutExtension).Count;
                 }                
             }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine($"ArgumentException was thrown with exception message: {ex.Message}");
+                throw;
+            }
             catch (FileNotFoundException ex)
             {
-                Console.WriteLine($"FileNotFoundException message: {ex.Message}");
+                Console.WriteLine($"FileNotFoundException was thrown with exception message: {ex.Message}");
                 throw;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Exception message: {ex.Message}");
+                Console.WriteLine($"Exception was thrown with exception message: {ex.Message}");
                 throw;
             }
             return counter;
